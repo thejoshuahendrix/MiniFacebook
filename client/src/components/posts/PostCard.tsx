@@ -34,6 +34,7 @@ const PostCardWrapper = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
+background: ${({ theme }) => theme.background.secondary};
   min-height: 300px;
   min-width: 600px;
   max-width: 100%;
@@ -42,6 +43,7 @@ align-items: center;
   color: ${({ theme }) => theme.text.primary};
   border: 1px dotted rgba(0,0,0,.5);
   border-radius: ${({ theme }) => theme.card.borderRadius};
+  box-shadow: ${({ theme }) => theme.card.boxShadowSmall};
 `
 
 const DateWrapper = styled.div`
@@ -65,6 +67,7 @@ const DeletePostButton = styled.button`
     outline: 0;
     border: 0;
     color: #6d1919;
+    cursor: pointer;
 `
 const PostCard = ({ user, author, content, comments, createdAt, id, imageURL }: Props) => {
     const dispatch = useDispatch();
@@ -82,20 +85,41 @@ const PostCard = ({ user, author, content, comments, createdAt, id, imageURL }: 
 
             {user === author && <DeleteButtonWrapper>
                 <div className="tooltip">
-                    <DeletePostButton onClick={() => handleDelete(id)}><Delete /></DeletePostButton>
-                    <span className="tooltiptext" onClick={() => handleDelete(id)}>Delete Post</span>
+                    <DeletePostButton
+                        onClick={() => handleDelete(id)}><Delete />
+                    </DeletePostButton>
+                    <span
+                        className="tooltiptext"
+                        onClick={() => handleDelete(id)}>
+                        Delete Post
+                    </span>
                 </div>
             </DeleteButtonWrapper>}
             <DescriptionWrapper>{content}</DescriptionWrapper>
-            {isVideo && <video style={{ maxWidth: '600px' }} controls><source src={imageURL} /></video>}
-            {imageURL && !isVideo && <img style={{ maxWidth: '600px' }} height="100%" src={imageURL} />}
+            {isVideo && <video
+                style={{ boxShadow: "5px 5px 5px 2px rgba(0,0,0,.5)", maxWidth: '600px' }}
+                controls>
+                <source src={imageURL} />
+            </video>}
+            {imageURL && !isVideo && <img
+                style={{ maxWidth: '600px' }}
+                height="100%"
+                src={imageURL} />}
             <DateWrapper>{moment(createdAt).fromNow()}</DateWrapper>
 
             <CommentCardsWrapper>
-                {comments.map(comment => <CommentCard id={comment._id || ''} user={user} author={comment.author} content={comment.content} updatedAt={comment.updatedAt || ""} />)}
+                {comments.map(comment => <CommentCard
+                    id={comment._id || ''}
+                    user={user}
+                    author={comment.author}
+                    content={comment.content}
+                    updatedAt={comment.updatedAt || ""} />)}
             </CommentCardsWrapper>
             <AddCommentWrapper>
-                <AddComment user={user} author={author} id={id} />
+                <AddComment
+                    user={user}
+                    author={author}
+                    id={id} />
             </AddCommentWrapper>
         </PostCardWrapper>
     )

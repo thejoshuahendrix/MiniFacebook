@@ -11,7 +11,7 @@ const LoginForm = styled.form`
     align-items: center;
     padding-top:40px;
     gap: 20px;
-    color:${({theme})=> theme.text.primary};
+    color:${({ theme }) => theme.text.primary};
     background: ${({ theme }) => theme.background.secondary};
 `
 
@@ -19,7 +19,7 @@ const LoginInput = styled.input`
     width: 30%;
     height: 50px;
     background: transparent;
-    color:${({theme})=> theme.text.primary};
+    color:${({ theme }) => theme.text.primary};
     border-left: 1px solid black;
     outline: none;
 `
@@ -49,7 +49,7 @@ const Login = () => {
                 localStorage.setItem("token", response);
                 setPassword('');
                 window.location.replace('/posts')
-            }else{
+            } else {
                 setError('Invalid Credentials');
             }
 
@@ -63,8 +63,8 @@ const Login = () => {
             <LoginInput id="nameInput" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter name..." />
             <LoginInput id="passwordInput" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password..." />
             <div className='tooltip'>
-            <LoginButton id="loginButton" onClick={(e) => handleSubmit(e)}><CheckCircle /></LoginButton>
-            <span className="tooltiptext" onClick={(e) => handleSubmit(e)}>Login</span>
+                <LoginButton id="loginButton" onClick={(e) => handleSubmit(e)}><CheckCircle /></LoginButton>
+                <span className="tooltiptext" onClick={(e) => handleSubmit(e)}>Login</span>
             </div>
             {error}
         </LoginForm>

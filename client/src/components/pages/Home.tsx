@@ -4,6 +4,7 @@ const HomeWrapper = styled.div`
     background-color:  ${({ theme }) => theme.background.secondary};;
     min-height: 60vh;
     height: 100%;
+    
     width: 90%;
     margin: auto;
     margin-top: 5%;
@@ -17,13 +18,17 @@ const HomeTextWrapper = styled.div`
     justify-content: center;
     border-radius: ${({theme})=> theme.card.borderRadius};
     text-align: center;
-    padding: 40px;
+    box-shadow: ${({theme})=> theme.card.boxShadowSmall};
+    width: 100%;
+    margin-left: -40px;
+    padding:40px;
+    background-color:${({theme})=> theme.background.four};
 `
 
 const Home = () => {
     return (
         <HomeWrapper>
-            <HomeTextWrapper id="main" ><h1>Welcome to the Main Page</h1></HomeTextWrapper>
+            <HomeTextWrapper id="main" ><h1 style={{}}>Welcome to the Main Page</h1></HomeTextWrapper>
         </HomeWrapper>
     )
 }

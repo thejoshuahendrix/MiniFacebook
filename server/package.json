@@ -9,7 +9,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@lvksh/logger": "^1.1.2",
+    "@lvksh/logger": "^1.4.1",
     "@types/express-fileupload": "^1.2.0",
     "bcryptjs": "^2.4.3",
     "chalk": "^4.0.0",

@@ -21,6 +21,7 @@ const DeleteCommentButton = styled.button`
     background: transparent;
     border: 0;
     outline: 0;
+    cursor: pointer;
     color: #6d1919;
 `
 const CommentCard = ({ user, content, author, updatedAt, id }: Props) => {
@@ -30,8 +31,15 @@ const CommentCard = ({ user, content, author, updatedAt, id }: Props) => {
             {author}
             {user === author &&
                 <div style={{ float: 'right' }} className="tooltip">
-                    <DeleteCommentButton style={{ float: 'right' }} onClick={() => deleteComment(id)(dispatch)}><XCircle /></DeleteCommentButton>
-                    <span className="tooltiptext" onClick={() => deleteComment(id)(dispatch)}>Delete Comment</span>
+                    <DeleteCommentButton
+                        style={{ float: 'right' }}
+                        onClick={() => deleteComment(id)(dispatch)}>
+                        <XCircle />
+                    </DeleteCommentButton>
+                    <span
+                        className="tooltiptext"
+                        onClick={() => deleteComment(id)(dispatch)}>
+                        Delete Comment</span>
                 </div>
             }
             <p>{content}</p>

@@ -24,6 +24,7 @@ declare module 'styled-components' {
             secondary: string,
             ternary:string,
             image:string
+            four:string
         } 
     
         mobile:string

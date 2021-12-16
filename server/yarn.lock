@@ -14,12 +14,10 @@
   dependencies:
     "@cspotcode/source-map-consumer" "0.8.0"
 
-"@lvksh/logger@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@lvksh/logger/-/logger-1.1.2.tgz#4cc09a4edf91b94524861031428577805826148a"
-  integrity sha512-OEDKv1pb7ne/fSX21IO5mwVJJc4w94sQMTDWZaGNXJlOy5mB9/sSyPK+jVtYiUikbYNYtz0Nib7G0jpq4RA2wg==
-  dependencies:
-    strip-ansi "6.0.0"
+"@lvksh/logger@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@lvksh/logger/-/logger-1.4.1.tgz#79012d1ea31f57f63128e30d5bbbd720f131ca48"
+  integrity sha512-/6sLm8oWY1JeHTaRqTubFF2sVJo8KLUHTF1QM9Q9S21mlG0ew/PLL50S9sLoP1VT5qJ3y7D2mgSw0O74mhe/XA==
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
@@ -246,7 +244,7 @@ ansi-align@^3.0.0:
   dependencies:
     string-width "^4.1.0"
 
-ansi-regex@^5.0.0, ansi-regex@^5.0.1:
+ansi-regex@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-5.0.1.tgz#082cb2c89c9fe8659a311a53bd6a4dc5301db304"
   integrity sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==
@@ -1750,13 +1748,6 @@ string-width@^4.0.0, string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2
     emoji-regex "^8.0.0"
     is-fullwidth-code-point "^3.0.0"
     strip-ansi "^6.0.1"
-
-strip-ansi@6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.0.tgz#0b1571dd7669ccd4f3e06e14ef1eed26225ae532"
-  integrity sha512-AuvKTrTfQNYNIctbR1K/YGTR1756GycPsg7b9bdV9Duqur4gv6aKqHXah67Z8ImS7WEz5QVcOtlfW2rZEugt6w==
-  dependencies:
-    ansi-regex "^5.0.0"
 
 strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"

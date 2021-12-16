@@ -6,7 +6,7 @@ export const DarkTheme: DefaultTheme = {
   text: {
     primary: '#ffffff',
     secondary: "#1b8af2",
-    ternary: '#444444'
+    ternary: '#3f3f3f'
   },
   card: {
     borderRadius: '15px',
@@ -15,14 +15,15 @@ export const DarkTheme: DefaultTheme = {
     gradient: 'linear-gradient(151deg, rgba(0,100,100,1) 2%, rgba(0,165,254,1) 37%, rgba(120,1,245,1) 87%)'
   },
   button: {
-    background: '#D3D3D3',
+    background: '#287021',
     text: '#121212'
   },
   background: {
-    primary: '#181b1f',
+    primary: '#121416',
     secondary: '#212c3b',
     ternary: "245245",
     image: darkBackground,
+    four:"#181818"
   },
   mobile: '1000px'
 }
@@ -40,14 +41,15 @@ export const LightTheme: DefaultTheme = {
 
   },
   button: {
-    background: '#D3D3D3',
+    background: '#54e454',
     text: '#121212'
   },
   background: {
     primary: "#E5EBEA",
     secondary: '#F3F3F3',
     ternary: "#D4d4d4",
-    image: lightBackground
+    image: lightBackground,
+    four:"#9fb3b3"
   },
   mobile: '1000px'
 }

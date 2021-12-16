@@ -13,7 +13,7 @@ export const ToggleThemeButton = styled.div<{ active: boolean }>`
   &::after {
     position: relative;
     content:"Theme";
-    color: ${({theme})=> theme.text.primary};
+    color: ${({ theme }) => theme.text.primary};
     top: -13px;
     color: rgba(0, 0, 0, 0);
     ${({ active }) => (active ? "right:-20px;" : "right: calc(30%);")};
@@ -26,7 +26,7 @@ export const ToggleThemeButton = styled.div<{ active: boolean }>`
     background-color: ${({ active }) => (active ? "#252525 " : "#e9e9e9")};
     transition: 500ms right;
   }
-  @media (max-width:${({theme})=>theme.mobile}) {
+  @media (max-width:${({ theme }) => theme.mobile}) {
     &::after{
       ${({ active }) => (active ? "right:0px;" : "right: calc(30%);")};
     }

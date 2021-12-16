@@ -10,6 +10,7 @@ const LogoutBtn = styled.button`
     border: 0;
     background: transparent;
     color: #6d1919;
+    cursor: pointer;
 `
 
 const LogoutButton = ({id}:any) => {

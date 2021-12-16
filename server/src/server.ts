@@ -6,6 +6,7 @@ import router from './routes/index';
 import cors from 'cors';
 import log from './services/Logger';
 import fileUpload from 'express-fileupload';
+import { verifyToken } from './controllers/user.controller';
 
 
 
@@ -41,10 +42,16 @@ app.post('/uploads', (req, res) => {
 
 
 app.listen(PORT, () => {
-    log.info(`Listening on http://localhost:${PORT}`)
     mongoose.connect(process.env.MONGO_URI || "").then(() => {
-        log.info("Connected to the database")
     }).catch((e: any) => {
-        log.veryBigNetworkError("Error connecting to the DB", e.message)
+        log.error("Error connecting to the DB", e.message);
     });
 });
+
+
+log.http("Serving /hello");
+log.data("Fetching user 01", "with extra info", "hello");
+log.info("Succesful connection", "Continuing cycle", "Cycle complete")
+log.test("Test log", "Testing Now...", "Testing succesful");
+log.debug("This log is here", "Here", "And here...")
+log.error("BIG ERROR OOF ASTLEY WAS HERE", "hello", "world");

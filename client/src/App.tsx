@@ -11,8 +11,6 @@ import { AppWrapper } from "./components/AppWrapper";
 import Footer from "./components/layout/Footer";
 import Privacy from "./components/pages/Privacy";
 import PostPage from "./components/pages/PostPage";
-import { useSelector } from "react-redux";
-import { fetchPosts } from "./actions/postActions";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import jwt from 'jsonwebtoken';

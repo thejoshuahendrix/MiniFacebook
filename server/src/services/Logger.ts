@@ -3,16 +3,43 @@ import chalk from 'chalk';
 
 const log = createLogger(
     {
-        ok: {label: chalk.greenBright`[OK]`,newLine: '| ', newLineEnd: '\\-'},
-        debug: chalk.magentaBright`[DEBUG]`,
-        info: {
-            label: chalk.cyan`[INFO]`,
-            newLine: chalk.cyan`⮡`,
-            newLineEnd: chalk.cyan`⮡`,
+        http: chalk.gray`[HTTP]`,
+        data: {
+            label: chalk.black`\{` + chalk.yellowBright`DB` + chalk.black`\}`,
+            newLine: chalk.yellowBright.bold`┣━`,
+            newLineEnd: chalk.yellow.bold`┗━`,
         },
-        veryBigNetworkError: chalk.bgRed.white.bold`[NETWORK]`,
+        error: {
+            label: "[" + chalk.bgRed.white`ERROR` + "]",
+            paddingChar: chalk.red.bold`━`,
+            divider: chalk.red.bold`|`,
+            newLine: chalk.red.bold`┣━`,
+            newLineEnd: chalk.red.bold`┗━`,
+        },
+        debug: {
+            label: chalk.magenta.bold`(DEBUG)`,
+            paddingChar: chalk.magenta.bold`~`,
+            divider: chalk.magenta.bold`?`,
+            newLine: chalk.magenta.bold`|`,
+            newLineEnd: chalk.magenta.bold`\\`,
+        },
+        info: {
+            label: "[" + chalk.blue`INFO` + "]",
+            paddingChar: chalk.blue`:`,
+            divider: chalk.blue.bold`>`,
+            newLine: chalk.blue.bold`┣━`,
+            newLineEnd: chalk.blue.bold`┗━`,
+        },
+        test: {
+            label: chalk.white`<TEST>:` + new Date().toLocaleTimeString().replace(/(AM|PM)/, "",).trim(),
+            paddingChar: "-",
+            divider: chalk.white.bold`|`,
+            newLine: chalk.white.bold`┣━`,
+            newLineEnd: chalk.white.bold`┗━`,
+        },
     },
-    { padding: "PREPEND"},
-    console.log
+    { padding: "APPEND", divider: chalk.greenBright`>`, paddingChar: ":" },
 );
+
+
 export default log;

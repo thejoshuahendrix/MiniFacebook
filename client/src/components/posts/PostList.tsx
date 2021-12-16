@@ -15,6 +15,7 @@ const PostListWrapper = styled.div`
     box-shadow: 10px 10px 10px rgba(0,0,0,.1);
     width: 100%;
     padding: 20px;
+    gap:30px;
     min-height: 60vh;
 
 `

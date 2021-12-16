@@ -17,7 +17,6 @@ export default class BaseController{
             const data = req.body;
             const dbData = await this.model.create(data);
             res.send(dbData);
-            log.info('POST Request received and response sent')
         } catch (error) {
             console.log(error);
             res.status(400).send(`Error in POST ${this.modelName}`);
@@ -28,7 +27,6 @@ export default class BaseController{
         try {
             const dbData = await this.model.find().populate("comments");
             res.send(dbData);
-            log.info('GET request received and response sent')
         } catch (error) {
             res.status(400).send(`Error in GET ${this.modelName}`);
         }
