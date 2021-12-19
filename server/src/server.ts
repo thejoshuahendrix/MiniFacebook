@@ -28,14 +28,14 @@ app.post('/uploads', (req, res) => {
     }
 
     const file = req.files?.file as fileUpload.UploadedFile;
-
-    file?.mv(`${__dirname}/../../client/public/assets/${file.name}`, err => {
+    let scrambledFileName = (Math.floor(Math.random() * 1000)).toString()+file.name;
+    file?.mv(`${__dirname}/../../client/public/assets/${scrambledFileName}`, err => {
         if (err) {
             console.error(err);
             return res.status(500).send(err);
         }
 
-        res.json({ fileName: file.name, filePath: `/assets/${file.name}` });
+        res.json({ fileName: scrambledFileName, filePath: `/assets/${scrambledFileName}` });
     });
 });
 

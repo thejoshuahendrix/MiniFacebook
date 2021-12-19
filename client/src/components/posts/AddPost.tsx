@@ -63,16 +63,23 @@ const AddPost = ({ user }: Props) => {
     };
     const onSubmit = async () => {
         if (file) {
-            let formData = new FormData();
-            formData.append("file", file);
-            const res = await axios.post("http://localhost:5000/uploads", formData, {
-                headers: {
-                    "Content-Types": "multipart/form-data",
-                },
-            });
-            let post = { content, author: user, imageURL: res.data.filePath };
-            addPost(post)(dispatch);
-            setContent("");
+            if (filename.includes(".mp4") || filename.includes(".png") || filename.includes(".jpg")) {
+                let formData = new FormData();
+                formData.append("file", file);
+                const res = await axios.post("http://localhost:5000/uploads", formData, {
+                    headers: {
+                        "Content-Types": "multipart/form-data",
+                    },
+                });
+
+                let post = { content, author: user, imageURL: res.data.filePath };
+                addPost(post)(dispatch);
+                setContent("");
+                setFile('');
+                window.location.replace("/posts");
+            } else {
+                alert("incorrect file type")
+            }
         } else {
             let post = { content, author: user, imageURL: "" };
             addPost(post)(dispatch);
@@ -89,7 +96,7 @@ const AddPost = ({ user }: Props) => {
                     type="text"
                     name="content"
                     value={content}
-                    onChange={(e) => setContent(e.target.value)}
+                    onChange={(e: any) => setContent(e.target.value)}
                 />
                 <div className="tooltip">
                     <label style={{cursor:'pointer'}} htmlFor="customFile">
