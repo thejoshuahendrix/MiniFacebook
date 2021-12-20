@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import { CheckSquare } from 'react-feather'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
@@ -46,7 +46,7 @@ const CommentInput = styled.input`
     }
 `
 
-const AddComment = ({ id, author, user }: Props) => {
+const AddComment: FC<Props> = ({ id, author, user }) => {
     const dispatch = useDispatch();
     const [content, setContent] = useState('')
 
@@ -70,9 +70,9 @@ const AddComment = ({ id, author, user }: Props) => {
                     }}>
                     <CheckSquare />
                 </AddCommentButton>
-                <span 
-                style={{marginTop:'20px'}}
-                className="tooltiptext"
+                <span
+                    style={{ marginTop: '20px' }}
+                    className="tooltiptext"
                     onClick={(e) => {
                         e.preventDefault();
                         addComment(comment)(dispatch);
