@@ -9,7 +9,9 @@ To run:
 
 `git clone` the repo
 
+
 Replace env-example.txt with your .env and credentials for MongoDB Atlas and your JWT secret
+
 
 `cd server`
 
