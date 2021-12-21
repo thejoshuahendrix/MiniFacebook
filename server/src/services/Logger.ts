@@ -5,8 +5,9 @@ const log = createLogger(
     {
         http: chalk.gray`[HTTP]`,
         data: {
-            label: chalk.black`\{` + chalk.yellowBright`DB` + chalk.black`\}`,
+            label: "\{" + chalk.yellow`\{` + chalk.yellowBright`DB` + chalk.yellow`\}` + "\}",
             newLine: chalk.yellowBright.bold`┣━`,
+            paddingChar: chalk.yellowBright`━`,
             newLineEnd: chalk.yellow.bold`┗━`,
         },
         error: {
