@@ -28,7 +28,7 @@ app.post('/uploads', (req, res) => {
     }
 
     const file = req.files?.file as fileUpload.UploadedFile;
-    let scrambledFileName = (Math.floor(Math.random() * 1000)).toString()+file.name;
+    let scrambledFileName = (Math.floor(Math.random() * 1000)).toString() + file.name;
     file?.mv(`${__dirname}/../../client/public/assets/${scrambledFileName}`, err => {
         if (err) {
             console.error(err);
@@ -43,15 +43,15 @@ app.post('/uploads', (req, res) => {
 
 app.listen(PORT, () => {
     mongoose.connect(process.env.MONGO_URI || "").then(() => {
+        log.http(`Serving ${PORT}`);
+        log.data("Connected to Mongo", "Successful");
+        log.info("Succesful connection", "Listening")
     }).catch((e: any) => {
         log.error("Error connecting to the DB", e.message);
     });
 });
 
 
-log.http("Serving /hello");
-log.data("Fetching user 01", "with extra info", "hello");
-log.info("Succesful connection", "Continuing cycle", "Cycle complete")
-log.test("Test log", "Testing Now...", "Testing succesful");
-log.debug("This log is here", "Here", "And here...")
-log.error("BIG ERROR OOF ASTLEY WAS HERE", "hello", "world");
+
+
+

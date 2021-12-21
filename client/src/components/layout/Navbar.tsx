@@ -138,6 +138,7 @@ const Navbar = ({ themeChanger, isLoggedIn }: Props) => {
                         <Link id="contactlink" style={{ textDecoration: "none", fontSize: "20px" }} to='/contact'>Contact</Link>
                         <Link id="aboutlink" style={{ textDecoration: "none", fontSize: "20px" }} to='/about'>About</Link>
                         {isLoggedIn &&<Link id="postslink" style={{ textDecoration: "none", fontSize: "20px" }} to='/posts'>Posts</Link>}
+                        {isLoggedIn &&<Link id="chatlink" style={{ textDecoration: "none", fontSize: "20px" }} to='/chat'>Chat</Link>}
                         {isLoggedIn &&<LogoutButton id="navlogoutbutton" />}
                         {!isLoggedIn && <Link id="loginlink" style={{ textDecoration: "none", fontSize: "20px" }} to='/login'>Login</Link>}
                         {!isLoggedIn && <Link id="registerlink" style={{ textDecoration: "none", fontSize: "20px" }} to='/register'>Register</Link>}

@@ -14,7 +14,7 @@ import PostPage from "./components/pages/PostPage";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import jwt from 'jsonwebtoken';
-
+import Chat from './components/pages/Chat';
 let decoded: any = jwt.decode(localStorage.getItem('token') ?? "");
 function App() {
   const [user] = useState(decoded ? decoded.username : "");
@@ -37,6 +37,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/posts" element={<PostPage user={user} isLoggedIn={isLoggedIn} />} />
+            <Route path="/chat" element={<Chat user={user}/>} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
