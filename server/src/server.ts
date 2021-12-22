@@ -6,7 +6,6 @@ import router from './routes/index';
 import cors from 'cors';
 import log from './services/Logger';
 import fileUpload from 'express-fileupload';
-import { verifyToken } from './controllers/user.controller';
 
 
 
@@ -41,13 +40,13 @@ app.post('/uploads', (req, res) => {
 
 
 
+
 app.listen(PORT, () => {
     mongoose.connect(process.env.MONGO_URI || "").then(() => {
-        log.http(`Serving ${PORT}`);
-        log.data("Connected to Mongo", "Successful");
-        log.info("Succesful connection", "Listening")
+        log.OK(`Serving port`,`${PORT.toString()}`)
+        log.INFO('MONGO CONNECTED')
     }).catch((e: any) => {
-        log.error("Error connecting to the DB", e.message);
+        log.INFO("Error connecting to the DB", e.message);
     });
 });
 

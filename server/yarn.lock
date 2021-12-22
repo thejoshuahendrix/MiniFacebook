@@ -14,10 +14,10 @@
   dependencies:
     "@cspotcode/source-map-consumer" "0.8.0"
 
-"@lvksh/logger@^1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@lvksh/logger/-/logger-1.4.1.tgz#79012d1ea31f57f63128e30d5bbbd720f131ca48"
-  integrity sha512-/6sLm8oWY1JeHTaRqTubFF2sVJo8KLUHTF1QM9Q9S21mlG0ew/PLL50S9sLoP1VT5qJ3y7D2mgSw0O74mhe/XA==
+"@lvksh/logger@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@lvksh/logger/-/logger-1.5.1.tgz#eeb5a17f4a3c458375d4f2b61771779f59e4da5e"
+  integrity sha512-DoEOzDqp58o6Bpxdh6v/zX7o/EC58q9amHnIdQP2OMq+uxpgRcCH9M+3Ue9qIpF6T+NxYyoE4NUGyZnQ0OGWig==
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
