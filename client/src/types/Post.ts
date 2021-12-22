@@ -1,9 +1,10 @@
 export type Post = {
     _id?: string;
     content: string;
-    author:string;
-    imageURL?:string;
+    author: string;
+    imageURL?: string;
     comments?: [];
     createdAt?: string;
-    postId?:string;
+    likes?: string[];
+    postId?: string;
 }

@@ -10,10 +10,10 @@ const fileConfig: FileLoggerConfig = {
 }
 const methodConfig = {
     OK: chalk.blue('OK'),
-    INFO: 'INFO'
+    INFO: 'INFO',
 }
 
-const log = createLogger(
+let log = createLogger(
     methodConfig,
     { divider: ' | ' },
     [FileLogger(fileConfig), console.log]

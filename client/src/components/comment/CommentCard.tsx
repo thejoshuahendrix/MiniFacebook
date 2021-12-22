@@ -14,8 +14,11 @@ interface Props {
 
 const CommentWrapper = styled.div`
     border: 1px dotted rgba(0,0,0,.4);
-    width: 100%;
+    background: ${({theme})=> theme.background.four};
+    width: 95%;
     padding: 20px;
+    border-radius: 5px;
+    box-shadow: ${({theme})=> theme.card.boxShadowSmall};
 `
 const DeleteCommentButton = styled.button`
     background: transparent;

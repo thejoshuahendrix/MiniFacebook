@@ -2,21 +2,23 @@ import { Request, Response } from 'express';
 import * as mongoose from 'mongoose';
 import log from '../services/Logger';
 
-export default class BaseController{
+export default class BaseController {
 
     model: mongoose.Model<any, any>;
     modelName: string;
 
-    constructor(model: mongoose.Model<any, any>){
+    constructor(model: mongoose.Model<any, any>) {
         this.model = model;
         this.modelName = model.modelName;
     };
-    
+
     post = async (req: Request, res: Response) => {
-        try { 
+        try {
+
             const data = req.body;
             const dbData = await this.model.create(data);
             res.send(dbData);
+            log.INFO('POST REQUEST SUCCESSFUL', dbData);
         } catch (error) {
             console.log(error);
             res.status(400).send(`Error in POST ${this.modelName}`);
@@ -27,6 +29,7 @@ export default class BaseController{
         try {
             const dbData = await this.model.find().populate("comments");
             res.send(dbData);
+            log.INFO('GET REQUEST SUCCESSFUL');
         } catch (error) {
             res.status(400).send(`Error in GET ${this.modelName}`);
         }
@@ -35,8 +38,8 @@ export default class BaseController{
     getById = async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
-            
-            const dbData = await this.model.find({_id: id});
+
+            const dbData = await this.model.find({ _id: id });
             res.send(dbData);
         } catch (error: any) {
             res.status(400).send(`Error in GET ${this.modelName}`);
@@ -44,12 +47,12 @@ export default class BaseController{
     };
 
     delete = async (req: Request, res: Response) => {
-        try{
+        try {
             const { id } = req.params;
-            const dbData = await this.model.deleteOne({_id: id});
+            const dbData = await this.model.deleteOne({ _id: id });
             res.send(dbData);
 
-        } catch (error){
+        } catch (error) {
             res.status(400).send(`Error in DELETE ${this.modelName}`);
         }
     }

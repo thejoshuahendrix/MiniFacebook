@@ -2,11 +2,13 @@ import CommentCard from "../comment/CommentCard"
 import { Comment } from '../../types/Comment'
 import AddComment from "../comment/AddComment"
 import styled from "styled-components"
-import { deletePost } from "../../actions/postActions"
+import { deletePost, fetchPosts, getPost } from "../../actions/postActions"
 import { useDispatch } from "react-redux"
 import moment from "moment"
 import { Delete } from "react-feather"
-import { useState } from "react"
+import { FC, useState } from "react"
+import LikeButton from "../LikeButton"
+import axios from "axios"
 
 interface Props {
     content: string;
@@ -16,6 +18,8 @@ interface Props {
     comments: Comment[];
     createdAt: string;
     id: string;
+    like?: boolean;
+    likes?: string[];
 }
 const CommentCardsWrapper = styled.div`
     width: 90%;
@@ -69,7 +73,7 @@ const DeletePostButton = styled.button`
     color: #6d1919;
     cursor: pointer;
 `
-const PostCard = ({ user, author, content, comments, createdAt, id, imageURL }: Props) => {
+const PostCard: FC<Props> = ({ user, author, content, comments, createdAt, id, imageURL, like, likes = [""] }) => {
     const dispatch = useDispatch();
     const [error, setError] = useState('')
     const [isVideo, setIsVideo] = useState(imageURL && imageURL.includes('.mp4'));
@@ -78,7 +82,22 @@ const PostCard = ({ user, author, content, comments, createdAt, id, imageURL }: 
             deletePost(id)(dispatch)
         }
     }
+    const clickLike = async () => {
+        const post = {
+            author, content, comments, postId: id, imageURL, likes: [...likes, user]
 
+        }
+        let res = await axios.post('http://localhost:5000/api/posts/' + id, post)
+        fetchPosts()(dispatch)
+    }
+    const clickUnlike = async () => {
+        const post = {
+            author, content, comments, postId: id, imageURL, likes: [...likes.filter(like => like !== user)]
+
+        }
+        let res = await axios.post('http://localhost:5000/api/posts/' + id, post)
+        fetchPosts()(dispatch)
+    }
     return (
         <PostCardWrapper>
             {author}
@@ -106,7 +125,7 @@ const PostCard = ({ user, author, content, comments, createdAt, id, imageURL }: 
                 height="100%"
                 src={imageURL} />}
             <DateWrapper>{moment(createdAt).fromNow()}</DateWrapper>
-
+            <LikeButton likes={likes} like={like} likeOnClick={!like ? clickLike : clickUnlike} />
             <CommentCardsWrapper>
                 {comments.map(comment => <CommentCard
                     id={comment._id || ''}

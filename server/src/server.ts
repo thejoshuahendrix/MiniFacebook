@@ -10,9 +10,10 @@ import fileUpload from 'express-fileupload';
 
 
 
+
 dotenv.config();
 const PORT = process.env.PORT || 5000;
-
+log.OK("Reached Here")
 
 const app: Express = express();
 app.use(fileUpload())
