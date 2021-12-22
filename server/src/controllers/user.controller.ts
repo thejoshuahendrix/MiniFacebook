@@ -3,6 +3,7 @@ import BaseController from "./base.controller";
 import jwt from 'jsonwebtoken'
 import { NextFunction, Request, Response } from "express";
 import Bcrypt from 'bcryptjs';
+import log from "../services/Logger";
 
 const generateAccessToken = (username: any) => {
     return jwt.sign(username, process.env.JWT_TOKEN || "d9fasjef", { expiresIn: "1800s" });
@@ -61,6 +62,7 @@ export default class UserController extends BaseController {
                 role: user.role,
             });
             res.status(200).json(token);
+            log.OK('Successfuly user logged in', req.body.name, user.password)
         } catch (error) {
             console.log(error);
             res.status(500).send(error);
@@ -75,6 +77,7 @@ export default class UserController extends BaseController {
                 var user = new User(req.body);
                 var result = await user.save();
                 res.status(200).send(result);
+                log.INFO('User created successfully', result)
             } else {
                 res.status(400).send({ message: "User Already Exists" })
             }

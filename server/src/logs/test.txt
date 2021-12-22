@@ -1,3 +1,0 @@
-  OK | Serving port
-  └- | 5000
-INFO | MONGO CONNECTED

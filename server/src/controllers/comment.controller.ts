@@ -2,6 +2,7 @@ import BaseController from "./base.controller";
 import { Comment, CommentI } from "../models/comment.model";
 import { Request, Response } from 'express'
 import { Post } from "../models/post.model";
+import log from "../services/Logger";
 
 
 export default class CommentController extends BaseController {
@@ -32,6 +33,7 @@ export default class CommentController extends BaseController {
                 dbData
             }
             res.send(out);
+            log.INFO('POST REQUEST SUCCESSFUL', out);
         } catch (error: any) {
             console.log(error.message)
             res.status(400).send(`Error in POST ${this.modelName}`)

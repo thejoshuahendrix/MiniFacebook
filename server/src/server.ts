@@ -6,13 +6,17 @@ import router from './routes/index';
 import cors from 'cors';
 import log from './services/Logger';
 import fileUpload from 'express-fileupload';
+import { FileLogger, FileLoggerConfig } from '@lvksh/logger/lib/FileLog';
+import { join } from 'path';
+import chalk from 'chalk';
+import { createLogger } from '@lvksh/logger';
 
 
 
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
-
+log.OK("Reached Here")
 
 const app: Express = express();
 app.use(fileUpload())
@@ -43,8 +47,7 @@ app.post('/uploads', (req, res) => {
 
 app.listen(PORT, () => {
     mongoose.connect(process.env.MONGO_URI || "").then(() => {
-        log.OK(`Serving port`,`${PORT.toString()}`)
-        log.INFO('MONGO CONNECTED')
+        log.INFO('MONGO CONNECTED');
     }).catch((e: any) => {
         log.INFO("Error connecting to the DB", e.message);
     });

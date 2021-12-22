@@ -21,21 +21,22 @@ const PostListWrapper = styled.div`
 `
 
 interface Props {
-    user:string;
+    user: string;
 }
 
-const PostList = ({user}:Props) => {
+const PostList = ({ user }: Props) => {
     const state = store.getState()
     const dispatch = useDispatch();
     const posts = useSelector(fetchPosts)
     useLayoutEffect(() => {
         fetchPosts()(dispatch)
     }, [])
+
     return (
         <PostListWrapper>
-            <AddPost user={user}/>
-            
-            {state.post.posts.sort((x:Post, y:Post) => new Date(y.createdAt||"").getTime() - +new Date(x.createdAt||"").getTime()).map((post: Post) => <PostCard imageURL={post.imageURL||""}user={user} id={post._id || ""} content={post.content} author={post.author} comments={post.comments || []} createdAt={post.createdAt || ""} />)}
+            <AddPost user={user} />
+
+            {state.post.posts.sort((x: Post, y: Post) => new Date(y.createdAt || "").getTime() - +new Date(x.createdAt || "").getTime()).map((post: Post) => <PostCard imageURL={post.imageURL || ""} user={user} id={post._id || ""} content={post.content} author={post.author} comments={post.comments || []} createdAt={post.createdAt || ""} likes={post.likes} like={post.likes?.includes(user)} />)}
         </PostListWrapper>
     )
 }
