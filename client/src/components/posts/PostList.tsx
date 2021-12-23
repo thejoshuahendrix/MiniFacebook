@@ -36,7 +36,21 @@ const PostList = ({ user }: Props) => {
         <PostListWrapper>
             <AddPost user={user} />
 
-            {state.post.posts.sort((x: Post, y: Post) => new Date(y.createdAt || "").getTime() - +new Date(x.createdAt || "").getTime()).map((post: Post) => <PostCard imageURL={post.imageURL || ""} user={user} id={post._id || ""} content={post.content} author={post.author} comments={post.comments || []} createdAt={post.createdAt || ""} likes={post.likes} like={post.likes?.includes(user)} />)}
+            {state.post.posts.sort((x: Post, y: Post) =>
+                new Date(y.createdAt || "")
+                    .getTime() - +new Date(x.createdAt || "")
+                        .getTime())
+                .map((post: Post) =>
+                    <PostCard
+                        key={post._id}
+                        imageURL={post.imageURL || ""}
+                        user={user} id={post._id || ""}
+                        content={post.content}
+                        author={post.author}
+                        comments={post.comments || []}
+                        createdAt={post.createdAt || ""}
+                        likes={post.likes}
+                        like={post.likes?.includes(user)} />)}
         </PostListWrapper>
     )
 }

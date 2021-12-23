@@ -117,7 +117,7 @@ describe("should login after a submit and allow posts", () => {
     cy.get("#addpostInput").type('test');
     cy.get("#addpostButton").click();
     cy.contains("test").should("exist");
-    cy.contains("Josh4").should("exist");
+    cy.contains("Josh").should("exist");
   });
 });
 

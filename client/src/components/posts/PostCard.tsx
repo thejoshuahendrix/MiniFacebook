@@ -48,6 +48,9 @@ background: ${({ theme }) => theme.background.secondary};
   border: 1px dotted rgba(0,0,0,.5);
   border-radius: ${({ theme }) => theme.card.borderRadius};
   box-shadow: ${({ theme }) => theme.card.boxShadowSmall};
+  h4{
+      color:${({ theme }) => theme.text.secondary}
+  }
 `
 
 const DateWrapper = styled.div`
@@ -72,6 +75,11 @@ const DeletePostButton = styled.button`
     border: 0;
     color: #6d1919;
     cursor: pointer;
+`
+const LikeWrapper = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
 `
 const PostCard: FC<Props> = ({ user, author, content, comments, createdAt, id, imageURL, like, likes = [""] }) => {
     const dispatch = useDispatch();
@@ -100,7 +108,7 @@ const PostCard: FC<Props> = ({ user, author, content, comments, createdAt, id, i
     }
     return (
         <PostCardWrapper>
-            {author}
+            <h4>{author}</h4>
 
             {user === author && <DeleteButtonWrapper>
                 <div className="tooltip">
@@ -125,7 +133,9 @@ const PostCard: FC<Props> = ({ user, author, content, comments, createdAt, id, i
                 height="100%"
                 src={imageURL} />}
             <DateWrapper>{moment(createdAt).fromNow()}</DateWrapper>
-            <LikeButton likes={likes} like={like} likeOnClick={!like ? clickLike : clickUnlike} />
+            <LikeWrapper>
+                <LikeButton likes={likes} like={like} likeOnClick={!like ? clickLike : clickUnlike} />
+            </LikeWrapper>
             <CommentCardsWrapper>
                 {comments.map(comment => <CommentCard
                     id={comment._id || ''}
