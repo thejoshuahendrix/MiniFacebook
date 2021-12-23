@@ -14,11 +14,14 @@ interface Props {
 
 const CommentWrapper = styled.div`
     border: 1px dotted rgba(0,0,0,.4);
-    background: ${({theme})=> theme.background.four};
+    background: ${({ theme }) => theme.background.four};
     width: 95%;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: ${({theme})=> theme.card.boxShadowSmall};
+    box-shadow: ${({ theme }) => theme.card.boxShadowSmall};
+    h4{
+        color:${({ theme }) => theme.text.secondary}
+    }
 `
 const DeleteCommentButton = styled.button`
     background: transparent;
@@ -31,7 +34,7 @@ const CommentCard = ({ user, content, author, updatedAt, id }: Props) => {
     const dispatch = useDispatch();
     return (
         <CommentWrapper>
-            {author}
+            <h4>{author}</h4>
             {user === author &&
                 <div style={{ float: 'right' }} className="tooltip">
                     <DeleteCommentButton
