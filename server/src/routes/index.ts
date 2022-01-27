@@ -1,12 +1,13 @@
-import {Router} from 'express'
-import postRouter from './post'
-import commentRouter from './comment'
-import userRouter from './user'
+import { Router } from 'express';
 
-const router = Router()
+import commentRouter from './comment';
+import postRouter from './post';
+import userRouter from './user';
 
-router.use("/posts", postRouter)
-router.use("/comments", commentRouter)
-router.use("/users", userRouter)
+const router = Router();
+
+router.use('/posts', postRouter);
+router.use('/comments', commentRouter);
+router.use('/users', userRouter);
 
 export default router;

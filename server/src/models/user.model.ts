@@ -1,30 +1,29 @@
-import * as mongoose from "mongoose";
+import * as mongoose from 'mongoose';
 
 export interface UserI {
-    username:string;
-    password:string;
-    email:string;
+    username: string;
+    password: string;
+    email: string;
 }
 
 const UserSchema = new mongoose.Schema({
-    name:{
-        type: String,
-        required: true
-    },
-    email:{
+    name: {
         type: String,
         required: true,
-        unique: true
     },
-    password:{
+    email: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        required: true,
     },
     register_date: {
         type: Date,
-        default: Date.now
-    }
-    
+        default: Date.now,
+    },
 });
 
 export const User = mongoose.model('user', UserSchema);

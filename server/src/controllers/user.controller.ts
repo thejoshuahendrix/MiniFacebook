@@ -1,90 +1,119 @@
-import { User } from "../models/user.model";
-import BaseController from "./base.controller";
-import jwt from 'jsonwebtoken'
-import { NextFunction, Request, Response } from "express";
 import Bcrypt from 'bcryptjs';
-import log from "../services/Logger";
+import { NextFunction, Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
+
+import { User } from '../models/user.model';
+import log from '../services/Logger';
+import BaseController from './base.controller';
 
 const generateAccessToken = (username: any) => {
-    return jwt.sign(username, process.env.JWT_TOKEN || "d9fasjef", { expiresIn: "1800s" });
-}
+    return jwt.sign(username, process.env.JWT_TOKEN || 'd9fasjef', {
+        expiresIn: '1800s',
+    });
+};
 
-export const verifyToken = (req: any, res: any, next: NextFunction) => {
+export const verifyToken = (
+    request: any,
+    response: any,
+    next: NextFunction
+) => {
     //Get auth header
-    const bearerHeader = req.headers["authorization"];
-    console.log("Header", bearerHeader);
+    const bearerHeader = request.headers['authorization'];
+
+    console.log('Header', bearerHeader);
+
     //Check if bearer is undefined
     try {
         if (typeof bearerHeader !== undefined) {
-            const bearer = bearerHeader.split(" ");
+            const bearer = bearerHeader.split(' ');
             //get token from array
-            const bearerToken = bearer[1];
+            const bearerToken = bearer.at(1);
+
             //set the token
-            req.token = bearerToken;
-            jwt.verify(req.token, process.env.JWT_TOKEN || "d9fasjef", (err: any, data: any) => {
-                if (err) {
-                    res.sendStatus(403);
-                } else {
-                    res.user = data;
-                    next();
+            request.token = bearerToken;
+            jwt.verify(
+                request.token,
+                process.env.JWT_TOKEN || 'd9fasjef',
+                (error: any, data: any) => {
+                    if (error) {
+                        response.sendStatus(403);
+                    } else {
+                        response.user = data;
+                        next();
+                    }
                 }
-            });
+            );
         } else {
             //Forbidden
-            res.sendStatus(403);
+            response.sendStatus(403);
         }
-    } catch (err) {
-        console.log(err);
-        res.sendStatus(403);
+    } catch (error) {
+        console.log(error);
+        response.sendStatus(403);
     }
-}
-
+};
 
 export default class UserController extends BaseController {
-
     constructor() {
-        super(User)
+        super(User);
     }
 
-    login = async (req: Request, res: Response) => {
+    login = async (request: Request, response: Response) => {
         try {
-            const user = await User.findOne({ name: req.body.name }).exec();
+            const user = await User.findOne({ name: request.body.name }).exec();
+
             if (!user) {
-                return res.status(400).send({ message: "The username does not exist" });
+                return response
+                    .status(400)
+                    .send({ message: 'The username does not exist' });
             }
-            if (!Bcrypt.compareSync(req.body.password, user.password)) {
-                return res.status(400).send({ message: "The password is invalid" });
+
+            if (!Bcrypt.compareSync(request.body.password, user.password)) {
+                return response
+                    .status(400)
+                    .send({ message: 'The password is invalid' });
             }
+
             //res.send("The username and password combination is correct!");
             //Auth JWT Somewhere here
             const token = generateAccessToken({
-                username: req.body.name,
+                username: request.body.name,
                 role: user.role,
             });
-            res.status(200).json(token);
-            log.OK('Successfuly user logged in', req.body.name, user.password)
+
+            response.status(200).json(token);
+            log.OK(
+                'Successfuly user logged in',
+                request.body.name,
+                user.password
+            );
         } catch (error) {
             console.log(error);
-            res.status(500).send(error);
+            response.status(500).send(error);
         }
     };
 
-    register = async (req: Request, res: Response) => {
+    register = async (request: Request, response: Response) => {
         try {
-            const userName = await User.findOne({ name: req.body.name }).exec();
-            if (!userName) {
-                req.body.password = Bcrypt.hashSync(req.body.password, 10);
-                var user = new User(req.body);
-                var result = await user.save();
-                res.status(200).send(result);
-                log.INFO('User created successfully', result)
-            } else {
-                res.status(400).send({ message: "User Already Exists" })
-            }
+            const userName = await User.findOne({
+                name: request.body.name,
+            }).exec();
 
+            if (!userName) {
+                request.body.password = Bcrypt.hashSync(
+                    request.body.password,
+                    10
+                );
+                const user = new User(request.body);
+                const result = await user.save();
+
+                response.status(200).send(result);
+                log.INFO('User created successfully', result);
+            } else {
+                response.status(400).send({ message: 'User Already Exists' });
+            }
         } catch (error) {
-            res.status(500).send(error);
+            response.status(500).send(error);
         }
     };
-
 }

@@ -1,60 +1,61 @@
 import { Request, Response } from 'express';
 import * as mongoose from 'mongoose';
+
 import log from '../services/Logger';
 
 export default class BaseController {
-
     model: mongoose.Model<any, any>;
     modelName: string;
 
     constructor(model: mongoose.Model<any, any>) {
         this.model = model;
         this.modelName = model.modelName;
-    };
-
-    post = async (req: Request, res: Response) => {
-        try {
-
-            const data = req.body;
-            const dbData = await this.model.create(data);
-            res.send(dbData);
-            log.INFO('POST REQUEST SUCCESSFUL', dbData);
-        } catch (error) {
-            console.log(error);
-            res.status(400).send(`Error in POST ${this.modelName}`);
-        }
-    };
-
-    get = async (req: Request, res: Response) => {
-        try {
-            const dbData = await this.model.find().populate("comments");
-            res.send(dbData);
-            log.INFO('GET REQUEST SUCCESSFUL');
-        } catch (error) {
-            res.status(400).send(`Error in GET ${this.modelName}`);
-        }
-    };
-
-    getById = async (req: Request, res: Response) => {
-        try {
-            const { id } = req.params;
-
-            const dbData = await this.model.find({ _id: id });
-            res.send(dbData);
-        } catch (error: any) {
-            res.status(400).send(`Error in GET ${this.modelName}`);
-        }
-    };
-
-    delete = async (req: Request, res: Response) => {
-        try {
-            const { id } = req.params;
-            const dbData = await this.model.deleteOne({ _id: id });
-            res.send(dbData);
-
-        } catch (error) {
-            res.status(400).send(`Error in DELETE ${this.modelName}`);
-        }
     }
 
-};
+    post = async (request: Request, response: Response) => {
+        try {
+            const data = request.body;
+            const databaseData = await this.model.create(data);
+
+            response.send(databaseData);
+            log.INFO('POST REQUEST SUCCESSFUL', databaseData);
+        } catch (error) {
+            console.log(error);
+            response.status(400).send(`Error in POST ${this.modelName}`);
+        }
+    };
+
+    get = async (request: Request, response: Response) => {
+        try {
+            const databaseData = await this.model.find().populate('comments');
+
+            response.send(databaseData);
+            log.INFO('GET REQUEST SUCCESSFUL');
+        } catch {
+            response.status(400).send(`Error in GET ${this.modelName}`);
+        }
+    };
+
+    getById = async (request: Request, response: Response) => {
+        try {
+            const { id } = request.params;
+
+            const databaseData = await this.model.find({ _id: id });
+
+            response.send(databaseData);
+        } catch {
+            response.status(400).send(`Error in GET ${this.modelName}`);
+        }
+    };
+
+    delete = async (request: Request, response: Response) => {
+        try {
+            const { id } = request.params;
+            const databaseData = await this.model.deleteOne({ _id: id });
+
+            response.send(databaseData);
+        } catch {
+            response.status(400).send(`Error in DELETE ${this.modelName}`);
+        }
+    };
+}

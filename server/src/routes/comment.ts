@@ -1,12 +1,13 @@
-import { Router } from 'express'
-import CommentController from '../controllers/comment.controller'
-const commentRouter = Router()
+import { Router } from 'express';
 
-const todoCtrl = new CommentController()
+import CommentController from '../controllers/comment.controller';
+const commentRouter = Router();
 
-commentRouter.get("/", todoCtrl.get)
-commentRouter.get("/:id", todoCtrl.getById)
-commentRouter.post("/", todoCtrl.post)
-commentRouter.delete("/:id", todoCtrl.delete)
+const todoCtrl = new CommentController();
 
-export default commentRouter
+commentRouter.get('/', todoCtrl.get);
+commentRouter.get('/:id', todoCtrl.getById);
+commentRouter.post('/', todoCtrl.post);
+commentRouter.delete('/:id', todoCtrl.delete);
+
+export default commentRouter;

@@ -1,4 +1,4 @@
-import * as mongoose from "mongoose";
+import * as mongoose from 'mongoose';
 
 export interface PostI {
     content: string;
@@ -8,30 +8,32 @@ export interface PostI {
     likes: [];
 }
 
-const PostSchema = new mongoose.Schema({
-    content: {
-        type: String
+const PostSchema = new mongoose.Schema(
+    {
+        content: {
+            type: String,
+        },
+        author: {
+            type: String,
+        },
+        imageURL: {
+            type: String,
+        },
+        comments: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'comments',
+            },
+        ],
+        likes: [
+            {
+                type: String,
+            },
+        ],
     },
-    author: {
-        type: String
-    },
-    imageURL: {
-        type: String
-    },
-    comments: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "comments"
-        }
-    ],
-    likes: [
-        {
-            type: String
+    {
+        timestamps: true,
+    }
+);
 
-        }
-    ]
-}, {
-    timestamps: true
-});
-
-export const Post = mongoose.model("posts", PostSchema);
+export const Post = mongoose.model('posts', PostSchema);
