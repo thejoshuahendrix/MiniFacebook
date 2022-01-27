@@ -1,60 +1,64 @@
 {
-  "name": "FullstackTemplateClient",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@lvksh/logger": "^1.1.1",
-    "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "axios": "^0.24.0",
-    "chalk": "^5.0.0",
-    "jsonwebtoken": "^8.5.1",
-    "moment": "^2.29.1",
-    "react": "^17.0.2",
-    "react-chat-engine": "^1.11.22",
-    "react-dom": "^17.0.2",
-    "react-feather": "^2.0.9",
-    "react-redux": "^7.2.6",
-    "react-responsive": "^9.0.0-beta.5",
-    "react-router-dom": "^6.0.2",
-    "react-scripts": "4.0.3",
-    "redux-thunk": "^2.4.1",
-    "styled-components": "^5.3.3",
-    "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "cypress open",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@types/chalk": "^2.2.0",
-    "@types/jsonwebtoken": "^8.5.6",
-    "@types/react-responsive": "^8.0.4",
-    "@types/react-router-dom": "^5.3.2",
-    "@types/styled-components": "^5.1.17",
-    "cypress": "^9.1.1",
-    "eslint-plugin-cypress": "^2.12.1"
-  }
+    "name": "FullstackTemplateClient",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@lvksh/logger": "^1.1.1",
+        "@types/node": "^12.0.0",
+        "@types/react": "^17.0.0",
+        "@types/react-dom": "^17.0.0",
+        "axios": "^0.24.0",
+        "chalk": "^5.0.0",
+        "jsonwebtoken": "^8.5.1",
+        "moment": "^2.29.1",
+        "react": "^17.0.2",
+        "react-chat-engine": "^1.11.22",
+        "react-dom": "^17.0.2",
+        "react-feather": "^2.0.9",
+        "react-redux": "^7.2.6",
+        "react-responsive": "^9.0.0-beta.5",
+        "react-router-dom": "^6.0.2",
+        "react-scripts": "4.0.3",
+        "redux-thunk": "^2.4.1",
+        "styled-components": "^5.3.3",
+        "typescript": "^4.5.5",
+        "web-vitals": "^1.0.1"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "cypress open",
+        "eject": "react-scripts eject",
+        "lint": "eslint -c .eslintrc.json --ext .ts ./src"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@types/chalk": "^2.2.0",
+        "@types/jsonwebtoken": "^8.5.6",
+        "@types/react-responsive": "^8.0.4",
+        "@types/react-router-dom": "^5.3.2",
+        "@types/styled-components": "^5.1.17",
+        "@typescript-eslint/parser": "^5.10.1",
+        "cypress": "^9.1.1",
+        "eslint": "^8.7.0",
+        "eslint-plugin-cypress": "^2.12.1",
+        "eslint-plugin-lvksh": "^1.2.8"
+    }
 }

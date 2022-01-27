@@ -7,4 +7,4 @@ export type Post = {
     createdAt?: string;
     likes?: string[];
     postId?: string;
-}
+};

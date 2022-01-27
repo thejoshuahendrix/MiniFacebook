@@ -1,5 +1,6 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
+
 import postReducer from '../reducers';
 
 const initialState = {};
@@ -20,7 +21,7 @@ const store = createStore(
     applyMiddleware(...middleWare)
 );
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;
 export default store;
